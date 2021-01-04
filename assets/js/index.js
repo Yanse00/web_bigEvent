@@ -1,23 +1,23 @@
 $(function() {
-    // 调用 获取用户基本信息
-    getUserInfo()
-    var layer = layui.layer;
-    // 点击按钮 实现退出功能
-    $('#btnLogout').on('click', function() {
-        layer.confirm('确定要退出吗', { icon: 3, title: '提示' },
+        // 调用 获取用户基本信息
+        getUserInfo()
+        var layer = layui.layer;
+        // 点击按钮 实现退出功能
+        $('#btnLogout').on('click', function() {
+            layer.confirm('确定要退出吗', { icon: 3, title: '提示' },
 
-            function(index) {
-                // 清空本地存储中的token
-                localStorage.removeItem('token');
-                // 重新跳转到登录页面
-                location.href = '/login.html';
+                function(index) {
+                    // 清空本地存储中的token
+                    localStorage.removeItem('token');
+                    // 重新跳转到登录页面
+                    location.href = '/login.html';
 
-                // 关闭confi 询问框
-                layer.close(index);
-            });
+                    // 关闭confi 询问框
+                    layer.close(index);
+                });
+        })
     })
-})
-
+    // 定义获取信息的函数在外部  因为其他的文件会去调用这个方法
 function getUserInfo() {
     $.ajax({
         method: 'GET',
@@ -50,6 +50,7 @@ function getUserInfo() {
 }
 
 function renderAvatar(user) {
+
     // 1.获取用户名称
     var name = user.nickname || user.username
         // 2.设置欢迎文本
